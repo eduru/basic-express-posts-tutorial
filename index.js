@@ -20,6 +20,10 @@ let comments = [
   { id: uuid(), name: "Sylvester", comment: "I can't feel my legs" },
 ];
 
+app.get("/comments", (req, res) => {
+  res.render("comments.ejs", { comments });
+});
+
 app.listen(PORT, () => {
   console.log(`server listening on port: ${PORT}`);
 });
