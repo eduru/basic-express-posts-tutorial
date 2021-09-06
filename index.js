@@ -24,6 +24,16 @@ app.get("/comments", (req, res) => {
   res.render("comments.ejs", { comments });
 });
 
+app.post("/comments", (req, res) => {
+  const { username, comment } = req.body;
+  comments.push({ id: uuid(), username, comment });
+  res.redirect("/comments");
+});
+
+app.get("/comments/new", (req, res) => {
+  res.render("comments/new.ejs");
+});
+
 app.listen(PORT, () => {
   console.log(`server listening on port: ${PORT}`);
 });
