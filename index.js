@@ -16,8 +16,8 @@ app.set("view-engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
 let comments = [
-  { id: uuid(), name: "Arnold", comment: "I'm back" },
-  { id: uuid(), name: "Sylvester", comment: "I can't feel my legs" },
+  { id: uuid(), username: "Arnold", comment: "I'm back" },
+  { id: uuid(), username: "Sylvester", comment: "I can't feel my legs" },
 ];
 
 app.get("/comments", (req, res) => {
