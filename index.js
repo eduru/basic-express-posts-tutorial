@@ -34,6 +34,12 @@ app.get("/comments/new", (req, res) => {
   res.render("comments/new.ejs");
 });
 
+app.get("/comments/:id", (req, res) => {
+  const { id } = req.params;
+  const comment = comments.find((c) => c.id === id);
+  res.render("comments/show.ejs", { comment });
+});
+
 app.listen(PORT, () => {
   console.log(`server listening on port: ${PORT}`);
 });
