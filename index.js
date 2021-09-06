@@ -54,6 +54,12 @@ app.patch("/comments/:id", (req, res) => {
   res.redirect("/comments");
 });
 
+app.delete("/comments/:id", (req, res) => {
+  const { id } = req.params;
+  comments = comments.filter((c) => c.id !== id);
+  res.redirect("/comments");
+});
+
 app.listen(PORT, () => {
   console.log(`server listening on port: ${PORT}`);
 });
