@@ -40,6 +40,20 @@ app.get("/comments/:id", (req, res) => {
   res.render("comments/show.ejs", { comment });
 });
 
+app.get("/comments/:id/edit", (req, res) => {
+  const { id } = req.params;
+  const comment = comments.find((c) => c.id === id);
+  res.render("comments/edit.ejs", { comment });
+});
+
+app.patch("/comments/:id", (req, res) => {
+  const { id } = req.params;
+  const newComment = req.body.comment;
+  const oldComment = comments.find((c) => c.id === id);
+  oldComment.comment = newComment;
+  res.redirect("/comments");
+});
+
 app.listen(PORT, () => {
   console.log(`server listening on port: ${PORT}`);
 });
