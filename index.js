@@ -12,8 +12,8 @@ app.use(express.urlencoded({ extended: true }));
 // Enables the public folder
 app.use(express.static(path.join(__dirname, "public")));
 // Basic config to use ejs
-app.set("view-engine", "ejs");
-app.set("views", path.join(__dirname, "/views"));
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
 let comments = [
   { id: uuid(), username: "Arnold", comment: "I'm back" },
@@ -21,7 +21,7 @@ let comments = [
 ];
 
 app.get("/comments", (req, res) => {
-  res.render("comments.ejs", { comments });
+  res.render("comments", { comments });
 });
 
 app.post("/comments", (req, res) => {
@@ -31,19 +31,19 @@ app.post("/comments", (req, res) => {
 });
 
 app.get("/comments/new", (req, res) => {
-  res.render("comments/new.ejs");
+  res.render("comments/new");
 });
 
 app.get("/comments/:id", (req, res) => {
   const { id } = req.params;
   const comment = comments.find((c) => c.id === id);
-  res.render("comments/show.ejs", { comment });
+  res.render("comments/show", { comment });
 });
 
 app.get("/comments/:id/edit", (req, res) => {
   const { id } = req.params;
   const comment = comments.find((c) => c.id === id);
-  res.render("comments/edit.ejs", { comment });
+  res.render("comments/edit", { comment });
 });
 
 app.patch("/comments/:id", (req, res) => {
